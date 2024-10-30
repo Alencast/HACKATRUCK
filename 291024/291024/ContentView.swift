@@ -4,7 +4,8 @@ struct ContentView: View {
     @State private var altura: String = ""
     @State private var peso: String = ""
     @State private var imc: Double? = nil
-    @State private var backgroundColor: Color = Color("green")
+    @State private var backgroundColor: Color = Color("green123")
+    @State private var status: String = ""
     
     var body: some View {
         ZStack {
@@ -18,7 +19,7 @@ struct ContentView: View {
                     .padding()
                 
                 TextField("Altura (cm)", text: $altura)
-                    .font(.system(size: 24, weight: .bold, design: .default))
+                    .font(.system(size: 24, weight: .bold))
                     .padding(10)
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
@@ -34,7 +35,9 @@ struct ContentView: View {
                     .frame(height: 50)
                     .multilineTextAlignment(.center)
                     .padding()
-
+                
+                
+                
                 Button(action: calcularIMC) {
                     Text("Calcular IMC")
                         .font(.headline)
@@ -45,10 +48,15 @@ struct ContentView: View {
                 }
                 .padding()
                 
+                Text(status)
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .padding()
+                
                 if let resultadoIMC = imc {
                     Text("Seu IMC é: \(String(format: "%.2f", resultadoIMC))")
                         .font(.title)
                         .padding()
+                    
                 }
 
                 Spacer()
@@ -77,12 +85,32 @@ struct ContentView: View {
        
         if resultadoIMC < 18.5 {
             backgroundColor = Color.green123
+            status = "Baixo peso"
+            
+            
+            
+                
+         
         } else if resultadoIMC < 24.9 {
-            backgroundColor = Color.green
+            backgroundColor = Color.lightgreen
+            status = "Normal"
+               
+           
         } else if resultadoIMC < 29.9 {
-            backgroundColor = Color.yellow
+            backgroundColor = Color.color
+            status = "Sobrepeso"
+           
+               
+              
         } else {
-            backgroundColor = Color.red
+            backgroundColor = Color.color1
+            status = "Obesidade"
+           
+                
+               
+           
+           
+
         }
         
         
